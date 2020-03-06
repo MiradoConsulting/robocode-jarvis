@@ -8,6 +8,8 @@ import robocode.*;
  */
 public class Jarvis extends Robot
 {
+	int count = 0;
+
 	/**
 	 * run: Jarvis's default behavior
 	 */
@@ -22,10 +24,12 @@ public class Jarvis extends Robot
 		// Robot main loop
 		while(true) {
 			// Replace the next 4 lines with any behavior you would like
-			ahead(100);
-			turnGunRight(360);
-			back(100);
-			turnGunRight(360);
+			for (int i = 0; i < 50; i++) {
+				turnGunRight(360);
+				turnGunRight(360);
+			}
+			
+			count++;
 		}
 	}
 
@@ -33,8 +37,9 @@ public class Jarvis extends Robot
 	 * onScannedRobot: What to do when you see another robot
 	 */
 	public void onScannedRobot(ScannedRobotEvent e) {
-		// Replace the next line with any behavior you would like
-		fire(1);
+		turnRight(e.getBearing());
+		ahead(e.getDistance() - 140);
+		fire(3);
 	}
 
 	/**
